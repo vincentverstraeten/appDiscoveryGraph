@@ -3,7 +3,7 @@
 Use the graph API to get all discovered apps in your tenant and show the devices that have this app installed.
 
 .DESCRIPTION
-We use this graph call to get all discovered apps in your tenant:
+We use the following graph call to get all discovered apps in your tenant:
 https://graph.microsoft.com/beta/deviceManagement/detectedApps
 
 More info about the graph call:
@@ -73,7 +73,6 @@ while ($discoveredAppsNextLink) {
 
 
 #Region Count apps we have discovered that are not Microsoft Store apps and not in excluded $exludedAps array
-
 Write-Host "We discovered $(($allaps | Where-Object {$_.displayName -notlike 'Microsoft.*' -and $_.displayName -notin $excludedAps }).count) non Microsoft apps that can be managed"
 #endregion
 
