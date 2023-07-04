@@ -9,9 +9,9 @@ Coded by Vincent Verstraeten in 2023 for PatchMyPC
 
 #Region Authentication to Azure Application // Get token to authenticate to Azure AD
 $authparams = @{
-    ClientId     = 'd9eb62ce-b748-4a6f-8ccf-21f347cd1fd9'
-    TenantId     = '33647b32-d6c6-43e9-a136-dcbaa396dc96'
-    ClientSecret = (ConvertTo-SecureString 'O1b8Q~hIOqRoBmvqFW6oYLo.MJX3cq~Ke2uf9bq7' -AsPlainText -Force  )
+    ClientId     = 'd9eb62ce-b748-4a6f-8ccf-21f347cd1fd91'
+    TenantId     = '33647b32-d6c6-43e9-a136-dcbaa396dc962'
+    ClientSecret = (ConvertTo-SecureString 'O1b38Q~hIOqRoBmvqFW6oYLo.MJX3cq~Ke2uf9bq7' -AsPlainText -Force  )
 }
 
 $auth = Get-MsalToken @authParams
@@ -77,7 +77,7 @@ if ($answer -eq "y") {
     write-host "Do you want to filter Microsoft apps? (y/n)"
     $answer = Read-Host
     if ($answer -eq "y") {
-        $allApsNoMicrosoftStore = $allAps | Where-Object {$_.displayName -notlike 'Microsoft.*' -and $_.displayName -notin $excludedAps}
+        $allApsNoMicrosoftStore = $allAps | Where-Object { $_.displayName -notlike 'Microsoft.*' -and $_.displayName -notin $excludedAps }
         $allApsNoMicrosoftStore | Sort-Object -Property deviceCount | Format-Table -AutoSize
         $listApps = $allApsNoMicrosoftStore
     }
@@ -95,7 +95,7 @@ $answer = Read-Host
 if ($answer -eq "y") {
     Write-Host 'Please chose an app displayName:'
     $appDisplayname = Read-Host
-    $app = $listApps | Where-Object {$_.displayName -eq $appDisplayname}
+    $app = $listApps | Where-Object { $_.displayName -eq $appDisplayname }
     $appID = $app.id
     $URL = "https://graph.microsoft.com/beta/deviceManagement/detectedApps('$appID')/managedDevices?$filter=&$top=20"
   
@@ -125,10 +125,10 @@ if ($answer -eq "y") {
     }
 
     foreach ($device in $allDevices) {
-$devicename = $device.deviceName
-write-host "$devicename"
+        $devicename = $device.deviceName
+        write-host "$devicename"
     }
-    }
+}
 else {
     Write-Host "Ok, bye!"
 }
