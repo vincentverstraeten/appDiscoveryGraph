@@ -121,7 +121,6 @@ if ($answer -eq "y") {
     $discoverDevices = Invoke-RestMethod @paramApps
     $discoverDevicesNextlink = $discoverdevices.'@odata.nextLink'
 
-    #check this?????!!!
     $allDevices += $discoverDevices.value
     #need to page trough the results
     while ($discoverDevicesNextlink) {
