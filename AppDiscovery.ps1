@@ -1,8 +1,15 @@
 <#
 .SYNOPSIS
-Detect apps that can be patched by PAtchMyPC or Scappman
-.DESCRIPTion
-Page trough a graph call to get all apps that are discovered in your tenant.
+Use the graph API to get all discovered apps in your tenant and show the devices that have this app installed.
+
+.DESCRIPTION
+We use this graph call to get all discovered apps in your tenant:
+https://graph.microsoft.com/beta/deviceManagement/detectedApps
+
+More info about the graph call:
+https://learn.microsoft.com/tr-tr/graph/api/intune-devices-detectedapp-list?view=graph-rest-beta
+
+
 
 Coded by Vincent Verstraeten in 2023 for PatchMyPC
 #>
@@ -11,7 +18,7 @@ Coded by Vincent Verstraeten in 2023 for PatchMyPC
 $authparams = @{
     ClientId     = 'd9eb62ce-b748-4a6f-8ccf-21f347cd1fd91'
     TenantId     = '33647b32-d6c6-43e9-a136-dcbaa396dc962'
-    ClientSecret = (ConvertTo-SecureString 'O1b38Q~hIOqRoBmvqFW6oYLo.MJX3cq~Ke2uf9bq7' -AsPlainText -Force  )
+    ClientSecret = (ConvertTo-SecureString 'O1b8Q~hIOqRoBmvqFW6oYLo.MJX3cq~Ke2uf9bq7' -AsPlainText -Force  )
 }
 
 $auth = Get-MsalToken @authParams
@@ -126,7 +133,7 @@ if ($answer -eq "y") {
 
     foreach ($device in $allDevices) {
         $devicename = $device.deviceName
-        write-host "$devicename"
+        write-host "The Application $appDisplayname is found in $devicename"
     }
 }
 else {
