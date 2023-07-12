@@ -16,9 +16,9 @@ Coded by Vincent Verstraeten in 2023 for PatchMyPC
 
 #Region Authentication to Azure Application // Get token to authenticate to Azure AD
 $authparams = @{
-    ClientId     = 'd9eb62ce-b748-4a6f-8ccf-21f347cd1fd91'
-    TenantId     = '33647b32-d6c6-43e9-a136-dcbaa396dc962'
-    ClientSecret = (ConvertTo-SecureString 'O1b8Q~hIOqRoBmvqFW6oYLo.MJX3cq~Ke2uf9bq7' -AsPlainText -Force  )
+    ClientId     = 'keepthisasecret123'
+    TenantId     = 'keepthisasecret123'
+    ClientSecret = (ConvertTo-SecureString 'supersecretclientsecret' -AsPlainText -Force  )
 }
 
 $auth = Get-MsalToken @authParams
